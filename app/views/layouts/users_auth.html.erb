@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'users', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="register-page" id="<%= page_body_id(params) %>">
+    <%= render "layouts/flash" %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render template: "layouts/application" %>
+  </body>
+</html>

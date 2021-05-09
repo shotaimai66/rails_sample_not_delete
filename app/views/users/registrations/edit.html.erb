@@ -1,0 +1,74 @@
+<h2><%= t('.title', resource: resource.model_name.human) %></h2>
+
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="" class="h2"><b>Nature Technology</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">アカウントの編集を行えます。</p>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <div class="input-group mb-3">
+          <%= f.text_field :name, class:"form-control", placeholder:"名前（フルネーム）" %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"メールアドレス", required: true %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          
+          <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"変更後パスワード(変更したい場合)" %>
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"変更後パスワード確認用" %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <%= f.password_field :current_password, autocomplete: "new-password", class:"form-control", placeholder:"現在のパスワード（必須）", required: true %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div>
+            <%= f.submit t('.update'), class:"btn btn-primary btn-block" %>
+          </div>
+          <!-- /.col -->
+        </div>
+      <% end %>
+    </div>
+    
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+  <div>
+        <h3><%= t('.cancel_my_account') %></h3>
+
+          <%= button_to t('.cancel_my_account'), registration_path(resource_name), class:"btn btn-default", data: { confirm: t('.are_you_sure') }, method: :delete %></p>
+
+          <%= link_to t('devise.shared.links.back'), :back %>
+      </div>
+</div>
+

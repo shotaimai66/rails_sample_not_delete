@@ -1,0 +1,33 @@
+<% provide(:title,  "プロフィール") %>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <%= link_to "編集", edit_user_registration_path, class:"btn btn-default" %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">About Me</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <strong>メールアドレス</strong>
+
+                <p class="text-muted">
+                  <%= current_user.email %>
+                </p>
+
+                <hr>
+
+                <strong>名前</strong>
+
+                <p class="text-muted"><%= current_user.name %></p>
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>

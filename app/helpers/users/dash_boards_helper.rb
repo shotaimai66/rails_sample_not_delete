@@ -1,0 +1,2 @@
+module Users::DashBoardsHelper
+end

@@ -1,0 +1,31 @@
+<div class="register-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="" class="h2"><b>Nature Technology</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">認証メールの再送信</p>
+
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="input-group mb-3">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"メールアドレス", required: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <%= f.submit t('.resend_confirmation_instructions'), class:"btn btn-primary btn-block" %>
+          </div>
+        </div>
+      <% end %>
+      <br>
+      <div>
+        <%= render "users/shared/links" %>
+      </div>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>

@@ -1,0 +1,2 @@
+module Users::ArticlesHelper
+end
