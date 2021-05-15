@@ -31,3 +31,4 @@ ADD . /webapp
 
 # puma.sockを配置するディレクトリを作成
 RUN mkdir -p tmp/sockets
+VOLUME /webapp/tmp
