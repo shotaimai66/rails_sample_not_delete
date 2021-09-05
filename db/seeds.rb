@@ -5,3 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.new(
+  email: 'test_user@gmail.com',
+  name: 'テストuser1',
+  password: 'password'
+)
+
+user.skip_confirmation! # deviseの確認メールをスキップ
+user.save!
+
+manager = Manager.new(
+  email: 'test_manager@gmail.com',
+  name: 'テストmanager1',
+  password: 'password'
+)
+
+manager.skip_confirmation! # deviseの確認メールをスキップ
+manager.save!
+
+admin = Admin.new(
+  email: 'test_admin@gmail.com',
+  name: 'テストadmin1',
+  password: 'password'
+)
+
+admin.skip_confirmation! # deviseの確認メールをスキップ
+admin.save!
