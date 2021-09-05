@@ -1,8 +1,15 @@
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
-threads threads_count, threads_count
-port        ENV.fetch("PORT") { 3000 }
-environment ENV.fetch("RAILS_ENV") { "production" }
-plugin :tmp_restart
+workers Integer(ENV.fetch("WEB_CONCURRENCY") { 2 })
 
-app_root = File.expand_path("../..", __FILE__)
-bind "unix://#{app_root}/tmp/sockets/puma.sock"
+max_threads_count = Integer(ENV.fetch("RAILS_MAX_THREADS") { 5 })
+min_threads_count = Integer(ENV.fetch("RAILS_MIN_THREADS") { max_threads_count })
+threads min_threads_count, max_threads_count
+
+preload_app!
+
+rackup      DefaultRackup
+port        ENV.fetch("PORT") { 3000 }
+environment ENV.fetch("RAILS_ENV") { "development" }
+
+on_worker_boot do
+  ActiveRecord::Base.establish_connection
+end

@@ -28,3 +28,5 @@ RUN bundle install
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . /webapp
+
+RUN yarn install && rails assets:precompile

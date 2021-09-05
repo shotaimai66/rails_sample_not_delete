@@ -9,11 +9,11 @@ default: &default
 
 development:
   <<: *default
-  database: tech_video_development
+  database: development_db
 
 test:
   <<: *default
-  database: tech_video_test
+  database: test_db
 
 production:
   <<: *default
