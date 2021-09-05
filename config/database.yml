@@ -16,9 +16,8 @@ test:
   database: test_db
 
 production:
-  <<: *default
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  adapter: postgresql
+  encoding: unicode
+  host: db            # 追加
+  username: postgres  # 追加(デフォルトの名前)
+  password: <%= ENV["POSTGRES_PASSWORD"] %>  # 追加

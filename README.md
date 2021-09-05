@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+### heroku dploy
 
-* System dependencies
+- heroku login
 
-* Configuration
+- heroku container:push web
 
-* Database creation
+- heroku container:release web
 
-* Database initialization
+- heroku stack:set container --app rails6-docker-adminlte
 
-* How to run the test suite
+- heroku run rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- heroku open
