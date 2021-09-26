@@ -37,9 +37,15 @@ gem 'dotenv-rails'
 
 gem 'vimeo_me2', :git => "https://github.com/bo-oz/vimeo_me2.git"
 
+gem 'grape'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "factory_bot_rails"
+  gem "rspec-rails"
+  gem 'database_cleaner'
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :development do
