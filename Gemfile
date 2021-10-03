@@ -38,6 +38,8 @@ gem 'dotenv-rails'
 gem 'vimeo_me2', :git => "https://github.com/bo-oz/vimeo_me2.git"
 
 gem 'grape'
+gem 'grape-entity'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

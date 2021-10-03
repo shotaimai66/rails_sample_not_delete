@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get  "use"  => "use#index"
 
   # app/api/api.rbをマウント
-  mount API => '/'
+  mount Api => '/_system_/api'
 
 
 end
