@@ -2,8 +2,15 @@ module Base::V1
   class Users < Grape::API
     resources :users do
       desc 'returns all users'
+      params do
+        optional :name, type: String
+      end
       get '/' do
-        @users = User.all # 最後に評価された値がレスポンスとして返される
+        if params[:name]
+          @users = User.where(name: params[:name])
+        else
+          @users = User.all
+        end
       end
 
       desc 'returns an author'
