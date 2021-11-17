@@ -28,3 +28,7 @@ RUN bundle install --without production
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . /webapp
+
+EXPOSE 3000
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
