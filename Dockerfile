@@ -29,6 +29,8 @@ RUN bundle install --without production
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . /webapp
 
+RUN yarn install && rails assets:precompile
+
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"

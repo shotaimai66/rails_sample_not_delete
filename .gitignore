@@ -38,8 +38,3 @@ yarn-debug.log*
 .env
 .env.development
 .env.test
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
