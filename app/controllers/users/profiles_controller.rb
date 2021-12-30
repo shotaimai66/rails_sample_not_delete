@@ -1,6 +1,6 @@
 class Users::ProfilesController < Users::Base
   def show
-    
+
   end
 
   def edit
@@ -8,10 +8,11 @@ class Users::ProfilesController < Users::Base
   end
 
   def update
-    
+
   end
 
   def destroy
 
   end
 end
+

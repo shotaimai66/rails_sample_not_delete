@@ -34,3 +34,4 @@ RUN yarn install && rails assets:precompile
 EXPOSE 3000
 
 CMD bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
+
