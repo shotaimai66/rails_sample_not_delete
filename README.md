@@ -59,6 +59,9 @@ docker-compose run app erd
 ### リポジトリコピー方法
 - https://necessary-chiller-0fb.notion.site/d899d9a8c80c4221a21ffdc570e5ed2b
 
+### リモートブランチのプロテクト方法
+- https://www.youtube.com/watch?v=ClHZOta_cgE
+
 ### heroku dploy
 - herokuへのデプロイ参考資料
   - https://necessary-chiller-0fb.notion.site/heroku-docker-3b210a618ca04e01a1a9543c18e6b24a
