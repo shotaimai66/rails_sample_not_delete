@@ -30,7 +30,10 @@ docker-compose run app rails db:migrate
 
 # rails db:seed
 docker-compose run app rails db:seed
+```
 
+### テストコマンド
+```
 # rspec(全部実行)
 docker-compose run app rspec
 
@@ -38,16 +41,34 @@ docker-compose run app rspec
 docker-compose run app rspec spec/models/article_spec.rb:17
 ```
 
+### 構文チェックコマンド
+```
+# rubocop
+docker-compose run app rubocop
+
+# rubocop(自動整形)
+docker-compose run app rubocop -a
+```
+
+### その他コマンド
+```
+# ER図の生成(gem 'erd')
+docker-compose run app erd
+```
+
+
 ### heroku dploy
 
-- heroku login
+```
+heroku login
 
-- heroku container:push web
+heroku container:push web
 
-- heroku container:release web
+heroku container:release web
 
-- heroku stack:set container
+heroku stack:set container
 
-- heroku run rails db:migrate
+heroku run rails db:migrate
 
-- heroku open
+heroku open
+```
