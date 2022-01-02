@@ -56,6 +56,8 @@ docker-compose run app rubocop -a
 docker-compose run app erd
 ```
 
+### リポジトリコピー方法
+- https://necessary-chiller-0fb.notion.site/d899d9a8c80c4221a21ffdc570e5ed2b
 
 ### heroku dploy
 - herokuへのデプロイ参考資料
