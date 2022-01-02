@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -14,10 +16,9 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    added_attrs = [ :email, :name, :password, :password_confirmation ]
+    added_attrs = %i[email name password password_confirmation]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
-
 end

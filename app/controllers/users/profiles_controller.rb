@@ -1,18 +1,13 @@
-class Users::ProfilesController < Users::Base
-  def show
+# frozen_string_literal: true
 
-  end
+module Users
+  class ProfilesController < Users::Base
+    def show; end
 
-  def edit
+    def edit; end
 
-  end
+    def update; end
 
-  def update
-
-  end
-
-  def destroy
-
+    def destroy; end
   end
 end
-

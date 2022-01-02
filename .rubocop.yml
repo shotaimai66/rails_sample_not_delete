@@ -1,0 +1,303 @@
+require:
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.0
+  Exclude:
+    - 'db/**/*'                                   # DBのマイグレーション関連ファイル
+    - 'vendor/**/*'                               # ベンダーが提供するファイル
+    - 'bin/{bundle,rails,rake,setup,update,yarn}' # Railsが生成するスクリプト
+  SuggestExtensions: false
+
+# エイリアスの指定を `alias_method` に統一
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+# 日本語コメントの許可
+Style/AsciiComments:
+  Enabled: false
+
+# ブロックデリミタのスタイルをブロックチェイン時はブレースを使用するように設定
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+# モジュールのネスト強制を無効化
+# @note 定義するモジュールはネスト、所属するモジュールはフラットに書きたい
+# @example
+# module Hoges::Fugas
+#   class Piyo
+#   end
+# end
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# クラスチェックのスタイルを `kind_of?` で統一
+Style/ClassCheck:
+  EnforcedStyle: kind_of?
+
+# クラスやメソッド定義の行にコメントを書くことを許可
+Style/CommentedKeyword:
+  Enabled: false
+
+# 三項演算子を使用した際に警告が出たため無効に
+Style/ConditionalAssignment:
+  Enabled: false
+
+# コンディション無しcaseを許可
+Style/EmptyCaseCondition:
+  Enabled: false
+
+# 書式付き文字列の作成方法を統一する
+Style/FormatString:
+  EnforcedStyle: percent
+
+# StringFormatの表記を統一する
+Style/FormatStringToken:
+  EnforcedStyle: annotated
+
+# 文字列リテラルfrozen強制を解除
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# ガード節を使うと可読性が下がるパターンも存在するため無効
+Style/GuardClause:
+  Enabled: false
+
+# 書き方を統一したい時に統一できないため無効化
+Style/IfUnlessModifier:
+  Enabled: false
+
+# ブロックチェインの改行強制を無効化
+Style/MultilineBlockChain:
+  Enabled: false
+
+# これきらい
+Style/NumericLiterals:
+  Enabled: false
+
+# 正規表現のマッチ部分の参照に`$n`を許可
+Style/PerlBackrefs:
+  Enabled: false
+
+# selfの使用を許可
+Style/RedundantSelf:
+  Enabled: false
+
+# 正規表現の表記をスラッシュで強制
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
+
+# ドキュメントの無い public class を許可する
+Style/Documentation:
+  Enabled: false
+
+# 引数のインデントスタイルを指定
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+# テストではカッコ省略を許可
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+
+# 垂直調整のためのスペースを許可
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+
+# 配列のインデントスタイルを指定
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+# ハッシュのインデントスタイルを指定
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+# ハッシュの垂直調整スタイルを指定
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
+
+# 1行あたりの長さを制限
+Layout/LineLength:
+  Max: 140
+  Exclude:
+    - 'app/admin/**/*'                  # ActiveAdminのDSL
+    - 'app/libs/admins/components/**/*' # ActiveAdminのコンポーネントDSL
+  IgnoredPatterns:
+    - "'.+'"                                                               # 文字リテラルが含まれる行
+    - '".+"'                                                               # 文字リテラルが含まれる行
+    - '#.+'                                                                # コメントが含まれる行
+    - '/.+/'                                                               # 正規表現が含まれる行
+    - '([A-Z][A-Za-z\d]+::){2,}[A-Z]'                                      # モジュール名が3つ以上含まれる行
+    - '([A-Z]+_){4,}[A-Z]'                                                 # 長い定数が含まれる行
+    - '\s+(has_one|has_many|belongs_to|validate|validates|delegate)\s+:.+' # モデル定義DSL
+    - '\s+(indexes)\s+:.+'                                                 # ESのスキーマ定義DSL
+    - '(^|\s+)def [^\(]+\(.+\)'                                            # 引数付きのメソッドが定義されている行
+
+# クラスを継承したクラスの initialize で super 呼出を必須とする警告を解除
+# @note 不必要なところでも呼ばなければ行けないのってDRYではないし冗長じゃない？
+Lint/MissingSuper:
+  Enabled: false
+
+# カッコのインデントスタイル指定に関する警告を解除
+# @note `Layout/IndentHash` と組み合わせると `})` で終了できなくなるため
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+# メソッドチェインのインデントスタイルを指定
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# 中身がからのカッコにスペースを挿入するように指定
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyleForEmptyBraces: space
+
+# テストでは例外の握りつぶしを許容する
+Lint/SuppressedException:
+  Exclude:
+    - 'spec/**/*'
+
+# コードの複雑さ判定(ABC)のしきい値を調整
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/tasks/helpers/test_data_helper.rb' # テストデータ定義
+  Max: 50
+
+# コードの複雑さ判定を無効
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+
+# ブロック長警告を無効にするメソッドを指定
+Metrics/BlockLength:
+  Exclude:
+    - 'app/admin/**/*'                        # ActiveAdminのDSL
+    - 'app/libs/admins/components/**/*'       # ActiveAdminのコンポーネントDSL
+    - 'spec/**/*'                             # RspecのDSL
+    - 'lib/tasks/helpers/test_data_helper.rb' # テストデータ定義
+    - '*.gemspec'                             # Gem定義
+  ExcludedMethods:
+    - 'configure'
+    - 'class_eval'
+    - 'extended'
+    - 'helpers'
+    - 'included'
+    - 'instance_eval'
+    - 'namespace'
+    - 'resource'
+    - 'resources'
+    - 'route_param'
+    - 'transaction'
+    - 'class_methods'
+
+# 1クラスあたりの長さ制限を調整
+Metrics/ClassLength:
+  Max: 250
+  Exclude:
+    - 'app/api/*_apis/*/apis/*.rb' # APIのDSL
+
+# コードの複雑さ判定のしきい値を調整
+Metrics/CyclomaticComplexity:
+  Max: 30
+
+# メソッド長のしきい値を調整
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/tasks/helpers/test_data_helper.rb' # テストデータ定義
+  Max: 50
+
+# モジュール長カウントの設定を調整
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/tasks/helpers/test_data_helper.rb' # テストデータ定義
+  CountAsOne:
+    - array
+    - hash
+    - heredoc
+
+# キーワード引数をパラメータ数制限から除外
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+
+# 可読性の低い命名の禁止ルールから特定の命名を除外
+Naming/MethodParameterName:
+  AllowedNames:
+    - x
+    - y
+    - w
+    - h
+    - id
+    - ip
+    - to
+
+# any_instanceの使用を許可する
+RSpec/AnyInstance:
+  Enabled: false
+
+# ファイルパスのチェックを無効化
+RSpec/FilePath:
+  Enabled: false
+
+# contextのprefixチェックを無効化
+RSpec/ContextWording:
+  Enabled: false
+
+# described_classを使用するよう設定
+RSpec/DescribedClass:
+  EnforcedStyle: described_class
+
+# itの長さチェックを無効化
+RSpec/ExampleLength:
+  Enabled: false
+
+# before, around, afterの each を明示させるよう設定
+RSpec/HookArgument:
+  EnforcedStyle: each
+
+# expect記法に統一、should記法を許可しない
+RSpec/ImplicitExpect:
+  EnforcedStyle: is_expected
+
+# 暗黙的な subject の使用を許可しない
+RSpec/ImplicitSubject:
+  EnforcedStyle: disallow
+
+# 繰り返し処理の中で expect の使用を許可する
+RSpec/IteratedExpectation:
+  Enabled: false
+
+# インスタンス変数の使用禁止設定を調整する
+RSpec/InstanceVariable:
+  AssignmentOnly: true
+
+# receive_message_chain の使用を許可する
+RSpec/MessageChain:
+  Enabled: false
+
+# spyの記法を 'receive' に統一
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+# itの中に複数のexpectを書くことを許可する
+RSpec/MultipleExpectations:
+  Enabled: false
+
+# `let` で定義できる遅延評価変数の最大値を変更する
+RSpec/MultipleMemoizedHelpers:
+  Max: 20
+
+# subjectの命名強制を無効化
+RSpec/NamedSubject:
+  Enabled: false
+
+# ネストの深さを制限
+RSpec/NestedGroups:
+  Max: 8
+
+# let! の使用を許可する
+RSpec/LetSetup:
+  Enabled: false
+
+# instance_doubleを推奨する警告を無効化
+RSpec/VerifiedDoubles:
+  Enabled: false

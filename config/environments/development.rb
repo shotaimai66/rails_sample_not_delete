@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -8,7 +10,7 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  config.hosts << "lvh.me"
+  config.hosts << 'lvh.me'
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -42,7 +44,7 @@ Rails.application.configure do
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
-  logger           = ActiveSupport::Logger.new(STDOUT)
+  logger           = ActiveSupport::Logger.new($stdout)
   logger.formatter = config.log_formatter
   config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
@@ -84,12 +86,11 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :user_name => ENV["YOUR_GMAIL_ADDRESS"],
-    :password => ENV["GOOGLE_APP_PASSWORD"],
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    address:              'smtp.gmail.com',
+    port:                 587,
+    user_name:            ENV['YOUR_GMAIL_ADDRESS'],
+    password:             ENV['GOOGLE_APP_PASSWORD'],
+    authentication:       :plain,
+    enable_starttls_auto: true
   }
-
 end

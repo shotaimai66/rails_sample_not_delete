@@ -1,7 +1,11 @@
-module Base::V1
-  class Root < Grape::API
-    format :json
+# frozen_string_literal: true
 
-    mount Base::V1::Users
+module Base
+  module V1
+    class Root < Grape::API
+      format :json
+
+      mount Base::V1::Users
+    end
   end
 end

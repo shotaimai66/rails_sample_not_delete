@@ -1,7 +1,7 @@
-class Users::DashBoardsController < Users::Base
+# frozen_string_literal: true
 
-  def index
-
+module Users
+  class DashBoardsController < Users::Base
+    def index; end
   end
-
 end
