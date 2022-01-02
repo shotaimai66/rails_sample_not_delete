@@ -1,7 +1,9 @@
 version: '3'
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: 'DEV.Dockerfile'
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/webapp
@@ -12,8 +14,6 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    env_file:
-      - ./environments/.env
     stdin_open: true
     tty: true
   db:

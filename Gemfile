@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
@@ -17,6 +17,8 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+
+gem 'rexml', '~> 3.2', '>= 3.2.4'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -34,8 +36,6 @@ gem 'rails-i18n', '~> 6.0'
 gem 'devise-bootstrap-views', '~> 1.0'
 
 gem 'dotenv-rails'
-
-gem 'vimeo_me2', :git => "https://github.com/bo-oz/vimeo_me2.git"
 
 gem 'grape'
 gem 'grape-entity'

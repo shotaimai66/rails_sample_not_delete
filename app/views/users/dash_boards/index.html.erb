@@ -2,26 +2,7 @@
 <div class="content">
   <div class="container-fluid">
     <div class="row">
-      <% @videos.each do |video| %>
-        <div class="col-md-4">
-            <div class="card card-widget">
-              <div class="card-header">
-                <div class="user-block">
-                  <span class="username"><%= video["name"] %></span>
-                  <span class="description"></span>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div>
-                  <%= video.html_safe %>
-                </div>
-                <script src="https://player.vimeo.com/api/player.js">
-                </script>
-              </div>
-            </div>
-        </div>
-      <% end %>
+
     </div>
     <!-- /.row -->
   </div><!-- /.container-fluid -->

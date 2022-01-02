@@ -24,12 +24,10 @@ ADD Gemfile /webapp/Gemfile
 ADD Gemfile.lock /webapp/Gemfile.lock
 
 # bundle installの実行
-RUN bundle install
+RUN bundle install --without production
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . /webapp
-
-RUN yarn install && rails assets:precompile
 
 EXPOSE 3000
 
