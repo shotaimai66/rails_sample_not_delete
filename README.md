@@ -58,17 +58,5 @@ docker-compose run app erd
 
 
 ### heroku dploy
-
-```
-heroku login
-
-heroku container:push web
-
-heroku container:release web
-
-heroku stack:set container
-
-heroku run rails db:migrate
-
-heroku open
-```
+- herokuへのデプロイ参考資料
+  - https://necessary-chiller-0fb.notion.site/heroku-docker-3b210a618ca04e01a1a9543c18e6b24a
