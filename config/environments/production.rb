@@ -8,7 +8,7 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  config.hosts << 'tech-video-on-docker-on-heroku.herokuapp.com'
+  config.hosts << ENV['RAILS_APP_HOST']
   config.hosts << 'localhost'
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
