@@ -1,19 +1,25 @@
 version: '3'
 services:
   app:
+    # build = dockerイメージをビルドする時の設定
     build:
       context: .
       dockerfile: 'DEV.Dockerfile'
+    # command = コンテナ起動時にコンテナ内で実行するコマンド（railsのサービスなのでrailsの起動コマンドを実行）
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # volumes = コンテナ内で発生したデータをコンテナの外部に永続化させるための設定（volumesは保存する箱みたいなもの）
     volumes:
       - .:/webapp
       - bundle:/usr/local/bundle
       - node_modules:/webapp/node_modules
       - packs:/webapp/public/packs
+    # ports = ホストPCのポート：コンテナポート（コンテナの3000ポートをホストPCの3000ポートにバインディング（繋げるみたいな意味）する。）
     ports:
       - "3000:3000"
+    # depends_on = dbサービス（コンテナ）を起動した後にappサービス(コンテナ)を起動する（依存関係のこと）
     depends_on:
       - db
+    # (stdin_open,tty) = コンテナ内でデバックできるようにする
     stdin_open: true
     tty: true
   db:

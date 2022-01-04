@@ -1,4 +1,4 @@
-FROM ruby:3.0.1
+FROM ruby:3.0.3
 
 # install nodejs(LTS)
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get install -y nodejs
@@ -25,7 +25,7 @@ ADD Gemfile /webapp/Gemfile
 ADD Gemfile.lock /webapp/Gemfile.lock
 
 # bundle installの実行
-RUN bundle install --without production
+RUN bundle install -j4
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . /webapp

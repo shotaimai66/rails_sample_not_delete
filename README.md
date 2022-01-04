@@ -5,13 +5,13 @@
 docker-compose build
 
 # bundle intall
-docker-compose run app bundle install
+docker-compose run --rm app bundle install
 
 # yarn install
-docker-compose run app yarn install
+docker-compose run --rm app yarn install
 
 # db:setup
-docker-compose run app rails db:setup
+docker-compose run --rm app rails db:setup
 ```
 
 ### 開発コマンド
@@ -23,31 +23,31 @@ docker-compose up
 docker-compose down
 
 # bundle install
-docker-compose run app bundle install
+docker-compose run --rm app bundle install
 
 # rails db:migrate
-docker-compose run app rails db:migrate
+docker-compose run --rm app rails db:migrate
 
 # rails db:seed
-docker-compose run app rails db:seed
+docker-compose run --rm app rails db:seed
 ```
 
 ### テストコマンド
 ```
 # rspec(全部実行)
-docker-compose run app rspec
+docker-compose run --rm app rspec
 
 # rspec(個別実行):例 spec/models/article_spec.rbの17行目
-docker-compose run app rspec spec/models/article_spec.rb:17
+docker-compose run --rm app rspec spec/models/article_spec.rb:17
 ```
 
 ### 構文チェックコマンド
 ```
 # rubocop
-docker-compose run app rubocop
+docker-compose run --rm app rubocop
 
 # rubocop(自動整形)
-docker-compose run app rubocop -a
+docker-compose run --rm app rubocop -a
 ```
 
 ### その他コマンド
