@@ -74,3 +74,6 @@ docker-compose run app erd
 ### heroku dploy
 - herokuへのデプロイ参考資料
   - https://necessary-chiller-0fb.notion.site/heroku-docker-3b210a618ca04e01a1a9543c18e6b24a
+
+### その他開発用readme（こちらも必ず確認ください！！）
+- https://github.com/shotaimai66/readme-develop
