@@ -1,5 +1,10 @@
 # README
-### 環境構築
+## このリポジトリをコピーして別のリポジトリを作成する方法
+- https://github.com/shotaimai66/readme-develop/blob/main/%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC%E6%96%B9%E6%B3%95.md
+
+---
+
+## 環境構築
 ```
 # イメージのビルド
 docker-compose build
@@ -14,7 +19,9 @@ docker-compose run --rm app yarn install
 docker-compose run --rm app rails db:setup
 ```
 
-### 開発コマンド
+---
+
+## 開発コマンド
 ```
 # コンテナ起動＜binding.irbを使いたい時（docker-compose upより常にこっちの方がいいかも）＞
 bin/dev
@@ -35,7 +42,9 @@ docker-compose run --rm app rails db:migrate
 docker-compose run --rm app rails db:seed
 ```
 
-### テストコマンド
+---
+
+## テストコマンド(gem 'rspec')
 ```
 # rspec(全部実行)
 docker-compose run --rm app rspec
@@ -44,7 +53,9 @@ docker-compose run --rm app rspec
 docker-compose run --rm app rspec spec/models/article_spec.rb:17
 ```
 
-### 構文チェックコマンド
+---
+
+## 構文チェックコマンド(gem 'rubocop')
 ```
 # rubocop
 docker-compose run --rm app rubocop
@@ -53,27 +64,15 @@ docker-compose run --rm app rubocop
 docker-compose run --rm app rubocop -a
 ```
 
-### その他コマンド
+---
+
+## ER図の生成(gem 'erd')
 ```
-# ER図の生成(gem 'erd')
-docker-compose run app erd
+# ER図の生成
+docker-compose run --rm app erd
 ```
 
-### admin-lteのhtmlファイルサンプル
-- まず、環境構築が終わっていること（yarn installで`node_modules`ファイルが作成される）
-- `node_modules/admin-lte/pages`配下に、サンプルHTMLがある
-- デザインを確認したい場合は[このページを参照する](https://adminlte.io/themes/v3/index.html)
-- 上記のサンプルを使ってデザインのコーディングをあまりせずに開発を行う。
+---
 
-### リポジトリコピー方法
-- https://necessary-chiller-0fb.notion.site/d899d9a8c80c4221a21ffdc570e5ed2b
-
-### リモートブランチのプロテクト方法
-- https://www.youtube.com/watch?v=ClHZOta_cgE
-
-### heroku dploy
-- herokuへのデプロイ参考資料
-  - https://necessary-chiller-0fb.notion.site/heroku-docker-3b210a618ca04e01a1a9543c18e6b24a
-
-### その他開発用readme（こちらも必ず確認ください！！）
+## その他開発用readme（こちらも必ず確認ください！！）
 - https://github.com/shotaimai66/readme-develop
