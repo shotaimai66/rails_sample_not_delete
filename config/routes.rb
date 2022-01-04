@@ -30,9 +30,6 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
     resource :profile, except: %i[create new]
   end
 
-  # その他
+  # 利用規約
   get 'use' => 'use#index'
-
-  # app/api/api.rbをマウント
-  mount Api => '/_system_/api'
 end

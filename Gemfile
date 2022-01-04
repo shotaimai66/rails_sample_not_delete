@@ -39,10 +39,6 @@ gem 'rails-i18n', '~> 6.0'
 
 gem 'dotenv-rails'
 
-gem 'grape'
-gem 'grape-entity'
-gem 'rack-cors'
-
 group :development, :test do
   # ERD生成
   gem 'rails-erd'
@@ -78,3 +74,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "ffi", "~> 1.15"

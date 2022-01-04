@@ -16,6 +16,9 @@ docker-compose run --rm app rails db:setup
 
 ### 開発コマンド
 ```
+# コンテナ起動＜binding.irbを使いたい時（docker-compose upより常にこっちの方がいいかも）＞
+bin/dev
+
 # コンテナ起動
 docker-compose up
 
@@ -55,6 +58,12 @@ docker-compose run --rm app rubocop -a
 # ER図の生成(gem 'erd')
 docker-compose run app erd
 ```
+
+### admin-lteのhtmlファイルサンプル
+- まず、環境構築が終わっていること（yarn installで`node_modules`ファイルが作成される）
+- `node_modules/admin-lte/pages`配下に、サンプルHTMLがある
+- デザインを確認したい場合は[このページを参照する](https://adminlte.io/themes/v3/index.html)
+- 上記のサンプルを使ってデザインのコーディングをあまりせずに開発を行う。
 
 ### リポジトリコピー方法
 - https://necessary-chiller-0fb.notion.site/d899d9a8c80c4221a21ffdc570e5ed2b
