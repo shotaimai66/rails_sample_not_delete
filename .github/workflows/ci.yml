@@ -1,0 +1,25 @@
+name: Ruby
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup docker
+      shell: bash
+      run: |
+        # イメージのビルド
+        docker-compose build
+        # 必要なアップデート
+        docker-compose run app yarn install
+        # データベースの作成
+        docker-compose run app rake db:create
+      env:
+        RAILS_ENV: test
+
+    - name: Run Test
+      shell: bash
+      run:  |
+        bin/test
