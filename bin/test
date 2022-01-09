@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# アプリケーションのテストを実行する
+# @note 引数はRSpec実行時のオプションとしてデリゲートされる
+#
+set -e;
+
+cat <<EOS
+=============================
+===== run テスト =====
+=============================
+EOS
+
+# テストの実行
+docker-compose run --rm app /webapp/docker/scripts/test.sh $*;
