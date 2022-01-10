@@ -27,4 +27,8 @@ cat <<EOS
 ===== railsコンテナを起動中... =====
 ========================================
 EOS
-docker-compose run --rm -p 3000:3000 app rails s -b 0.0.0.0;
+if [ $# == 1 ]; then
+  docker-compose run --rm -p $*:3000 app rails s -b 0.0.0.0;
+else
+  docker-compose run --rm -p 3000:3000 app rails s -b 0.0.0.0;
+fi
