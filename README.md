@@ -19,6 +19,10 @@
 ---
 
 ## 環境構築
+1. まずはdockerの導入
+    - https://github.com/shotaimai66/readme-develop/blob/main/Docker%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB.md
+2. dockerの導入ができたら、以下のコマンドを打ち込んでいく。(アプリのディレクトリ内にcdコマンドで移動してから)
+
 ```
 # イメージのビルド
 docker-compose build
@@ -31,6 +35,12 @@ docker-compose run --rm app yarn install
 
 # db:setup
 docker-compose run --rm app rails db:setup
+
+# railsサーバー起動(ローカルPC用)
+bin/dev
+
+# railsサーバー起動(cloud9の方)
+bin/dev 8080
 ```
 
 ---
@@ -39,6 +49,9 @@ docker-compose run --rm app rails db:setup
 ```
 # コンテナ起動＜binding.irbを使いたい時（docker-compose upより常にこっちの方がいいかも）＞
 bin/dev
+
+# railsサーバー起動(cloud9の方)
+bin/dev 8080
 
 # コンテナ起動
 docker-compose up
