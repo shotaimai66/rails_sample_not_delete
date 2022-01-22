@@ -54,9 +54,7 @@ jobs:
     - name: Docker tag and save
       id: docker-tag-save
       if: steps.cache-docker-image.outputs.cache-hit != 'true'
-      run: mkdir -p ${IMAGE_CACHE_DIR}
-        && docker image tag ${APP_IMAGE_TAG} ${APP_IMAGE_CACHE_TAG}
-        && docker image save -o ${IMAGE_CACHE_DIR}/image.tar ${APP_IMAGE_CACHE_TAG}
+      run: mkdir -p ${IMAGE_CACHE_DIR} && docker image tag ${APP_IMAGE_TAG} ${APP_IMAGE_CACHE_TAG} && docker image save -o ${IMAGE_CACHE_DIR}/image.tar ${APP_IMAGE_CACHE_TAG}
 
 
   test-app:
