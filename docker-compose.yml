@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: 'DEV.Dockerfile'
+    image: rails6_sample_app:0.1.0
     container_name: docker-rails-service
     # command = コンテナ起動時にコンテナ内で実行するコマンド（railsのサービスなのでrailsの起動コマンドを実行）
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"

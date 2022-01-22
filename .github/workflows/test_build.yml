@@ -51,6 +51,10 @@ jobs:
       id: docker-build
       run: docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1
 
+    - name: Docker images
+      id: docker-build-ls
+      run: docker images
+
     - name: Docker tag and save
       id: docker-tag-save
       if: steps.cache-docker-image.outputs.cache-hit != 'true'
