@@ -49,7 +49,7 @@ jobs:
 
     - name: Docker build
       id: docker-build
-      run: docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1 base
+      run: docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1
 
     - name: Docker tag and save
       id: docker-tag-save
@@ -91,7 +91,7 @@ jobs:
 
     - name: Docker compose build
       id: docker-build
-      run: docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1 base
+      run: docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1
 
     - name: Cache bundle gems
       id: cache-bundle-gems
