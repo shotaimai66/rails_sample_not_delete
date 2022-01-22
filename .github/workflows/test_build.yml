@@ -95,6 +95,10 @@ jobs:
       id: docker-build
       run: docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1
 
+    - name: rails db:create
+      id: docker-build
+      run: docker-compose run --rm app rails db:create
+
     - name: Cache bundle gems
       id: cache-bundle-gems
       uses: actions/cache@v1
