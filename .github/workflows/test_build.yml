@@ -13,8 +13,8 @@ on:
 env:
   DOCKER_BUILDKIT: 1
   COMPOSE_DOCKER_CLI_BUILD: 1
-  APP_IMAGE_TAG: rails6-sample:0.1.0
-  APP_IMAGE_CACHE_TAG: rails6-sample-cache
+  APP_IMAGE_TAG: rails6api-development:0.1.0
+  APP_IMAGE_CACHE_TAG: rails6api-development-cache
   IMAGE_CACHE_DIR: /tmp/cache/docker-image
   IMAGE_CACHE_KEY: cache-image
 
