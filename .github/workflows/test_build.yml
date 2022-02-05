@@ -1,111 +1,31 @@
+name: Ruby
+
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '**/*.md'
-      - 'LICENSE'
   pull_request:
-    paths-ignore:
-      - '**/*.md'
-      - 'LICENSE'
-
-env:
-  DOCKER_BUILDKIT: 1
-  COMPOSE_DOCKER_CLI_BUILD: 1
-  APP_IMAGE_TAG: rails6_sample_app:0.1.0
-  APP_IMAGE_CACHE_TAG: rails6_sample_app-cache
-  IMAGE_CACHE_DIR: /tmp/cache/docker-image
-  IMAGE_CACHE_KEY: cache-image
-
+    branches:
+      - main
 
 jobs:
-  image-cache-or-build:
-    strategy:
-      matrix:
-        ruby: ["2.7.3"]
-        os: [ubuntu-18.04]
-    runs-on: ${{ matrix.os }}
-    env:
-      ARG_RUBY_VERSION: ${{ matrix.ruby }}
-
+  test:
+    runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      id: checkout
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+    - name: Setup docker
+      shell: bash
+      run: |
+        # イメージのビルド
+        docker-compose build
+        # 必要なアップデート
+        docker-compose run app yarn install
+        # データベースの作成
+        docker-compose run app rake db:create
+      env:
+        RAILS_ENV: test
 
-    - name: Cache docker image
-      id: cache-docker-image
-      uses: actions/cache@v1
-      with:
-        path: ${{ env.IMAGE_CACHE_DIR }}
-        key: ${{ runner.os }}-${{ env.IMAGE_CACHE_KEY }}-${{ matrix.ruby }}-${{ hashFiles('Dockerfile') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ env.IMAGE_CACHE_KEY }}-${{ matrix.ruby }}-
-    - name: Docker load
-      id: docker-load
-      if: steps.cache-docker-image.outputs.cache-hit == 'true'
-      run: docker image load -i ${IMAGE_CACHE_DIR}/image.tar
-
-    - name: Docker build
-      id: docker-build
-      run: docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1
-
-    - name: Docker images
-      id: docker-build-ls
-      run: docker images
-
-    - name: Docker tag and save
-      id: docker-tag-save
-      if: steps.cache-docker-image.outputs.cache-hit != 'true'
-      run: mkdir -p ${IMAGE_CACHE_DIR} && docker image tag ${APP_IMAGE_TAG} ${APP_IMAGE_CACHE_TAG} && docker image save -o ${IMAGE_CACHE_DIR}/image.tar ${APP_IMAGE_CACHE_TAG}
-
-
-  test-app:
-    needs: image-cache-or-build
-    strategy:
-      matrix:
-        ruby: ["2.7.3"]
-        os: [ubuntu-18.04]
-    runs-on: ${{ matrix.os }}
-    env:
-      ARG_RUBY_VERSION: ${{ matrix.ruby }}
-      GEMS_CACHE_DIR: /tmp/cache/bundle
-      GEMS_CACHE_KEY: cache-gems
-
-    steps:
-    - name: Check out code
-      id: checkout
-      uses: actions/checkout@v2
-
-    - name: Cache docker image
-      id: cache-docker-image
-      uses: actions/cache@v1
-      with:
-        path: ${{ env.IMAGE_CACHE_DIR }}
-        key: ${{ runner.os }}-${{ env.IMAGE_CACHE_KEY }}-${{ matrix.ruby }}-${{ hashFiles('Dockerfile') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ env.IMAGE_CACHE_KEY }}-${{ matrix.ruby }}-
-    - name: Docker load
-      id: docker-load
-      if: steps.cache-docker-image.outputs.cache-hit == 'true'
-      run: docker image load -i ${IMAGE_CACHE_DIR}/image.tar
-
-    - name: Docker compose build
-      id: docker-build
-      run: docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1
-
-    - name: Rails db:create
-      run: docker-compose run --rm app rails db:create
-
-    - name: Cache bundle gems
-      id: cache-bundle-gems
-      uses: actions/cache@v1
-      with:
-        path: ${{ env.GEMS_CACHE_DIR }}
-        key: ${{ runner.os }}-${{ env.GEMS_CACHE_KEY }}-${{ matrix.ruby }}-${{ hashFiles('Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ env.GEMS_CACHE_KEY }}-${{ matrix.ruby }}-
-    - name: Setup and Run test
-      id: setup-and-run-test
-      run: bin/test
+    - name: Run Test
+      shell: bash
+      run:  |
+        bin/test
