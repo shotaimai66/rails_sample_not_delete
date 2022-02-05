@@ -31,7 +31,7 @@ RUN bundle install -j4
 ADD . /webapp
 
 # アセットのプリコンパイル
-RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile \
+RUN SECRET_KEY_BASE=placeholder RAILS_ENV=production bundle exec rails assets:precompile \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 

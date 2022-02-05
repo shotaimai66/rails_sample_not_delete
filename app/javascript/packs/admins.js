@@ -3,20 +3,25 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-//= require rails-ujs
-//= require turbolinks
-//= require_tree ./admin
+require("@rails/ujs").start()
+require("turbolinks").start()
+require("@rails/activestorage").start()
+require("channels")
+require('admin-lte');
+require("jquery");
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import 'bootstrap';
+import '../stylesheets/admins'; // This file will contain your custom CSS
+import "@fortawesome/fontawesome-free/js/all";
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+document.addEventListener("turbolinks:load", () => {
+  $('[data-toggle="tooltip"]').tooltip()
+});
 
-require("bootstrap/dist/js/bootstrap")
-require("admin-lte/plugins/jquery/jquery.min")
-require("admin-lte/plugins/bootstrap/js/bootstrap.bundle.min")
-require("admin-lte/dist/js/adminlte.min")
+
+// Uncomment to copy all static images under ../images to the output folder and reference
+// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
+// or the `imagePath` JavaScript helper below.
+//
+// const images = require.context('../images', true)
+// const imagePath = (name) => images(name, true)
