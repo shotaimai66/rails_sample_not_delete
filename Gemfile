@@ -51,8 +51,6 @@ group :development, :test do
   gem 'letter_opener_web', '~> 1.0'
   gem 'pry-rails'
   gem 'rspec-rails'
-  # 脆弱性診断
-  gem 'brakeman'
 end
 
 group :development do
@@ -68,12 +66,22 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
+  # 結合テスト用ツール
+  gem 'capybara'
+  gem 'launchy', '~> 2.4.3' # 追記
   gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'turnip'
+  gem 'webdrivers' # 追記
+  gem 'webrick'
   # Coverage
-  gem 'simplecov', require: false
+  # カバレッジ測定ツール
+  gem 'simplecov'
+
+  # 脆弱性チェックツール
+  gem 'brakeman'
+
+  # N+1問題検出ツール
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

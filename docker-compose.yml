@@ -20,7 +20,6 @@ services:
     # depends_on = dbサービス（コンテナ）を起動した後にappサービス(コンテナ)を起動する（依存関係のこと）
     depends_on:
       - db
-      - chrome
       - webpacker
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpacker
@@ -51,10 +50,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-data:/var/lib/mysql
-  chrome:
-    image: selenium/standalone-chrome:latest
-    ports:
-      - 4444:4444
+
 volumes:
   mysql-data:
   bundle:
