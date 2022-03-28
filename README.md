@@ -23,7 +23,7 @@
     - https://github.com/shotaimai66/readme-develop/blob/main/Docker%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB.md
 2. dockerの導入ができたら、以下のコマンドを打ち込んでいく。(アプリのディレクトリ内にcdコマンドで移動してから)
 
-```
+```ruby
 # イメージのビルド
 docker-compose build
 
@@ -46,7 +46,7 @@ bin/dev 8080
 ---
 
 ## 開発コマンド
-```
+```ruby
 # コンテナ起動＜binding.irbを使いたい時（docker-compose upより常にこっちの方がいいかも）＞
 bin/dev
 
@@ -59,14 +59,17 @@ docker-compose up
 # コンテナ停止
 docker-compose down
 
+# appコンテナ内でコマンド実行(`docker-compose run --rm app`と同義)
+bin/docker/bundle/exec
+
 # bundle install
-docker-compose run --rm app bundle install
+bin/docker/bundle/exec bundle install
 
 # rails db:migrate
-docker-compose run --rm app rails db:migrate
+bin/docker/bundle/exec rails db:migrate
 
 # rails db:seed
-docker-compose run --rm app rails db:seed
+bin/docker/bundle/exec rails db:seed
 ```
 
 ---
@@ -74,7 +77,8 @@ docker-compose run --rm app rails db:seed
 ## ※※※※※※※PR上げる前に確認してください※※※※※※※
 - rspecと構文チェックとERDの生成
   - rspecが通っているか？
-  - 構文チェックでエラーが出ていないか？
+  - rubocopの構文チェックでエラーが出ていないか？
+  - brakemanの脆弱性診断でエラーが出ていないか？
   - ERDの更新はされているか？
 
 以上を以下のコマンドで確認できます。
@@ -94,37 +98,47 @@ bin/testで全てのチェックに合格すると以下のように表示され
 ---
 
 ## テストコマンド(gem 'rspec')
-```
+```ruby
 # rspec(全部実行)
-docker-compose run --rm app rspec
+bin/docker/bundle/exec rspec
 
 # rspec(個別実行):例 spec/models/article_spec.rbの17行目
-docker-compose run --rm app rspec spec/models/article_spec.rb:17
+bin/docker/bundle/exec rspec spec/models/article_spec.rb:17
 ```
 
 ---
 
 ## 構文チェックコマンド(gem 'rubocop')
-```
+```ruby
 # rubocop
-docker-compose run --rm app rubocop
+bin/docker/bundle/exec rubocop
 
 # rubocop(自動整形)
-docker-compose run --rm app rubocop -a
+bin/docker/bundle/exec rubocop -a
+```
+
+---
+
+## 脆弱性チェックコマンド(gem 'brakeman')
+```ruby
+# brakeman
+bin/docker/bundle/exec brakeman --no-pager
 ```
 
 ---
 
 ## ER図の生成(gem 'erd')
-```
+```ruby
 # ER図の生成
-docker-compose run --rm app erd
+bin/docker/bundle/exec erd
 ```
 
 ---
+## cssとjsファイルの適応について
+- webpackerを使用しているので、jsとcssファイルの場所がapp/assets配下ではなく、app/javascript配下にあります。app/javascriptの中にサンプルのcssとjsがあるのでそちらを参考に実装してみてください。
+
+## herokuデプロイ方法
+- https://github.com/shotaimai66/readme-develop/blob/main/rails7/rails7-heroku-deploy.md
 
 ## その他開発用readme（こちらも必ず確認ください！！）
 - https://github.com/shotaimai66/readme-develop
-
-## herokuデプロイ方法
-https://github.com/shotaimai66/readme-develop/blob/main/rails7/rails7-heroku-deploy.md

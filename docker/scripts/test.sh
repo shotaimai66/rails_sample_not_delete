@@ -11,6 +11,7 @@ export RAILS_ENV="test";
 
 # テストの実行
 bundle exec rspec $*;
+bundle exec brakeman --no-pager;
 bundle exec rubocop;
 
 # erdの生成

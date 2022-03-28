@@ -51,6 +51,8 @@ group :development, :test do
   gem 'letter_opener_web', '~> 1.0'
   gem 'pry-rails'
   gem 'rspec-rails'
+  # 脆弱性診断
+  gem 'brakeman'
 end
 
 group :development do

@@ -67,6 +67,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.9.3)
       msgpack (~> 1.0)
+    brakeman (5.2.1)
     builder (3.2.4)
     capybara (3.35.3)
       addressable
@@ -304,6 +305,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.9.3)
+  brakeman
   capybara (>= 3.26)
   database_cleaner
   devise
