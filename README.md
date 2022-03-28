@@ -145,6 +145,9 @@ docker-compose down --rmi local -v
 ## cssとjsファイルの適応について
 - webpackerを使用しているので、jsとcssファイルの場所がapp/assets配下ではなく、app/javascript配下にあります。app/javascriptの中にサンプルのcssとjsがあるのでそちらを参考に実装してみてください。
 
+## rspecについて
+- ./specディレクトリ内にサンプルのテストファイル(model_spec,request_spec,system_specがあるのでそれを参考に、テストを書いてください。一つのタスクに１個でもいいのでググりながら、テストを書くように頑張ってみましょう！)
+
 ## herokuデプロイ方法
 - https://github.com/shotaimai66/readme-develop/blob/main/rails7/rails7-heroku-deploy.md
 
