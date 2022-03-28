@@ -1,6 +1,6 @@
 setup:
   addons:
-    - plan: jawsdb-maria
+    - plan: jawsdb
   config:
     RACK_ENV: production
     RAILS_ENV: production
