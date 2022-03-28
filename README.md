@@ -134,6 +134,14 @@ bin/docker/bundle/exec erd
 ```
 
 ---
+
+## dockerがおかしくなった時やdockerのリソースを一回リセットするとき
+```ruby
+# 現在のディレクトリのdocker-composeコマンドで作成したイメージやコンテナ、ボリューム、ネットワークを削除するコマンド
+docker-compose down --rmi local -v
+```
+
+---
 ## cssとjsファイルの適応について
 - webpackerを使用しているので、jsとcssファイルの場所がapp/assets配下ではなく、app/javascript配下にあります。app/javascriptの中にサンプルのcssとjsがあるのでそちらを参考に実装してみてください。
 
